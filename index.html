@@ -1,19 +1,91 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-  </head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Agility Release Comparison Tool</title>
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="bower_components/fontawesome/svg-with-js/css/fa-svg-with-js.css"/>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/popper.js/dist/umd/popper.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/fontawesome/svg-with-js/js/fontawesome-all.min.js"></script>
+    <script src="client.js"></script>
+</head>
   <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+
+    <button type="button" class="bg-secondary fixed-top ml-5 mt-3 rounded-circle toggle-on" id="toolbarToggle"><i class="fas fa-angle-double-up"></i></button>
+    <div class="d-block text-center mb-2">
+        <h1 class="d-inline pt-2 text-center">Agility Release Comparison Tool</h1>
+    </div>
+
+    <div class="container toolbar" id="toolbar">
+        <div class="card-deck">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Before File</h4>
+                    <input type="file" name="fileBefore" id="fileBefore"/>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">After File</h4>
+                    <input type="file" name="fileAfter" id="fileAfter"/>
+                </div>
+            </div>
+        </div>
+        <a name="compare-submit" id="btnCompareSubmit" class="btn btn-primary col-12 mt-2 mb-2" href="#" role="button">Compare!</a>
+    </div>
+
+    <div class="container">
+        <code>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="width: 8.33%" scope="col">Line</th>
+                        <th style="width: 41.66%" scope="col">Before</th>
+                        <th style="width: 8.33%" scope="col">Diff</th>
+                        <th style="width: 41.66%" scope="col">After</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="row">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </code>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="zippedError" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-center text-white">
+            <h5 class="modal-title">Invalid Attachment</h5>
+            <button type="button text-white" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="fas fa-times text-white"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>The attached file is invalid or needs to be unzipped first.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script>
+      if (window.module) module = window.module;
       // You can also require other files to run in this process
-      require('./renderer.js')
+      require('./renderer.js');
     </script>
+
   </body>
 </html>
